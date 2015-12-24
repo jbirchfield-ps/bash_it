@@ -26,18 +26,5 @@ export SCM_CHECK=true
 # https://github.com/xvzf/vcprompt
 #export VCPROMPT_EXECUTABLE=~/.vcprompt/bin/vcprompt
 
-export EDITOR='/usr/bin/mate -w'
-export GIT_EDITOR='/usr/bin/mate -w'
-
 # Load Bash It
 source $BASH_IT/bash_it.sh
-
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
-setjdk() {
-	export JAVA_HOME=$(/usr/libexec/java_home -v $1)
-}
-
-export DOCKER_TLS_VERIFY="1"
-export DOCKER_HOST="tcp://192.168.99.100:2376"
-export DOCKER_CERT_PATH="/Users/jbirchfield/.docker/machine/machines/default"
-export DOCKER_MACHINE_NAME="default"
