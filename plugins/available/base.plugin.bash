@@ -196,3 +196,29 @@ function buf ()
     local filetime=$(date +%Y%m%d_%H%M%S)
     cp -a "${filename}" "${filename}_${filetime}"
 }
+
+#backup a file and log it
+bu() { cp $@ $@.backup-`date +%y%m%d%H%M%S`; echo "`date +%Y-%m-%d` backed up $PWD/$@" >> ~/.backups.log; }
+
+#make a directory and cd into it
+mcd () {
+	mkdir -p $1;
+	cd $1
+	pwd
+}
+
+alias kk='sudo kill' # Expecting a pid
+pss() {
+	[[ ! -n ${1} ]] && return; # bail if no argument
+	ps axo pid,command | grep -i ${1} | grep -v grep; # show matching processes
+	pids=$(ps axo pid,command | grep -i ${1} | grep -v grep | awk '{print $1}'); # get pids
+	complete -W "${pids}" kk # make a completion list for kk
+}
+
+function gh () {
+  if [ -z "$1" ]; then
+    echo "Bad usage. try:gh run_test";
+  else
+    history | egrep $* |grep -v "gh $*"
+  fi
+}
