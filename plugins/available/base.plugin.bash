@@ -195,16 +195,7 @@ function buf ()
     local filename=$1
     local filetime=$(date +%Y%m%d_%H%M%S)
     cp -a "${filename}" "${filename}_${filetime}"
-}
-
-#backup a file and log it
-bu() { cp $@ $@.backup-`date +%y%m%d%H%M%S`; echo "`date +%Y-%m-%d` backed up $PWD/$@" >> ~/.backups.log; }
-
-#make a directory and cd into it
-mcd () {
-	mkdir -p $1;
-	cd $1
-	pwd
+	echo "`date +%Y-%m-%d` backed up $PWD/$@" >> ~/.backups.log;
 }
 
 alias kk='sudo kill' # Expecting a pid
